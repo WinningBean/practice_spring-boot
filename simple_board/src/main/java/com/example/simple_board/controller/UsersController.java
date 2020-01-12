@@ -14,4 +14,11 @@ public class UsersController {
     @Autowired
     private UsersRepository usersRepository;
 
+    @PostMapping(value = "/joinRequest")
+    public String joinRequest(HttpServletRequest request){
+        JoinService joinService = new JoinService();
+        joinService.joinUser(request, usersRepository);
+        return "index";
+    }
+
 }

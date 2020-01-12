@@ -10,4 +10,8 @@ public class MainController {
         return "index";
     }
 
+    @RequestMapping(value = "/joinPage")
+    public String joinPage(){
+        return "join";
+    }
 }
