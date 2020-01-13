@@ -1,7 +1,7 @@
 package com.example.simple_board.controller;
 
-import com.example.simple_board.repository.UsersRepository;
 import com.example.simple_board.service.JoinService;
+import com.example.simple_board.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,10 +13,10 @@ import java.util.Map;
 public class UsersController {
 
     @Autowired
-    private UsersRepository usersRepository;
+    private JoinService joinService;
 
     @Autowired
-    private JoinService joinService;
+    private LoginService loginService;
 
     @PostMapping(value = "/joinRequest")
     public String joinRequest(@RequestParam Map<String, String> paramMap){
@@ -24,9 +24,14 @@ public class UsersController {
         String userPw = paramMap.get("user_pw");
         String userNm = paramMap.get("user_nm");
 
-        joinService.joinUser(userId, userPw, userNm);
-
-        return "index";
+        return joinService.joinUser(userId, userPw, userNm);
     }
 
+    @PostMapping(value = "/loginRequest")
+    public String loginRequest(@RequestParam Map<String, String> paramMap){
+        String userId = paramMap.get("user_id");
+        String userPw = paramMap.get("user_pw");
+
+        return loginService.login(userId, userPw);
+    }
 }

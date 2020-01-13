@@ -5,7 +5,10 @@
     <title>메인 페이지</title>
 </head>
 <body>
-    <h1>Hello World!</h1>
-    <a href="/joinPage">회원가입</a><br>
+    <h1>Simple_Board</h1>
+    <p th:if="${session.loginUser!=null}"><strong th:text="${session.loginUser.getUserNm()}"/>님 환영</p>
+    <a href="/joinPage" th:if="${session.loginUser==null}">회원가입</a><br>
+    <a href="/loginPage" th:if="${session.loginUser==null}">로그인</a><br>
+    <a href="/logout" th:if="${session.loginUser!=null}">로그아웃</a><br>
 </body>
 </html>
