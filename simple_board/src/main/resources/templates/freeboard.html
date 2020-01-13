@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 보기</title>
+</head>
+<body>
+    <h2>Free-Board</h2>
+    <a href="/freeboardWritePage" th:if="${session.loginUser!=null}">글 작성</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+<!--                <th>작성시각</th>-->
+            </tr>
+        </thead>
+        <th:block th:if="${session.boardList!=null}">
+            <th:block th:each="board:${session.boardList}">
+                <tr>
+                    <td><span th:text="${board.getFreeId()}"></span></td>
+                    <td><span th:text="${board.getTitle()}"></span></td>
+                    <td><span th:text="${board.getWriter()}"></span></td>
+    <!--                <td tbody:text="${board.getWriteTime()}"></td>-->
+                </tr>
+            </th:block>
+        </th:block>
+    </table>
+</body>
+</html>
