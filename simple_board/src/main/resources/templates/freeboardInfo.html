@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 자세히</title>
+    <script>
+        function getPost(freedid){
+            location.href = "/freeBoardInfo?freeId=" + freedid;
+        }
+    </script>
+</head>
+<body>
+    <input th:value="${session.freeboard.getTitle()}"/><br>
+    <textarea th:text="${session.freeboard.getContent()}"></textarea><br>
+    <span th:text="${session.freeboard.getWriter()}"></span>
+</body>
+</html>

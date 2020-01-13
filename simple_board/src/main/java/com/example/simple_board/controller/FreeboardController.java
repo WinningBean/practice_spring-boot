@@ -1,5 +1,6 @@
 package com.example.simple_board.controller;
 
+import com.example.simple_board.service.freeboard.FreeboardInfoService;
 import com.example.simple_board.service.freeboard.FreeboardListService;
 import com.example.simple_board.service.freeboard.FreeboardWriteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,9 @@ import java.util.Map;
 @Controller
 public class FreeboardController {
 
-    @Autowired
-    private FreeboardListService freeboardListService;
-
-    @Autowired
-    private FreeboardWriteService freeboardWriteService;
+    @Autowired private FreeboardListService freeboardListService;
+    @Autowired private FreeboardWriteService freeboardWriteService;
+    @Autowired private FreeboardInfoService freeboardInfoService;
 
     private int returnIntValue(String stringToInt){
         return Integer.parseInt(stringToInt);
@@ -40,5 +39,11 @@ public class FreeboardController {
         freeboardWriteService.write(title, content, writer);
 
         return "redirect:/freeboard";
+    }
+
+    @GetMapping("freeBoardInfo")
+    public String getPost(@RequestParam(value = "freeId")String freeId){
+        String page = freeboardInfoService.getFreeboardPost(freeId);
+        return page;
     }
 }
