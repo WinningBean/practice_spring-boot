@@ -30,4 +30,15 @@ public class FreeboardController {
         page = freeboardListService.freeboardList();
         return page;
     }
+
+    @PostMapping("/freeboardWriteRequest")
+    public String freeboardWriteRequest(@RequestParam Map<String, String> paramMap){
+        String title = paramMap.get("title");
+        String content = paramMap.get("content");
+        String writer = paramMap.get("writer");
+
+        freeboardWriteService.write(title, content, writer);
+
+        return "redirect:/freeboard";
+    }
 }

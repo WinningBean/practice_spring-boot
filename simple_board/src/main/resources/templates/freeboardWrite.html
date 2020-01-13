@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판 글쓰기</title>
+</head>
+<body>
+    <h2>게시판 글쓰기</h2>
+    <form action="/freeboardWriteRequest" method="post">
+        <input type="text" placeholder="제목" name="title"/><br>
+        <textarea placeholder="내용" name="content"></textarea><br>
+        <input type="hidden" name="writer" th:value="${session.loginUser.getUserNm()}"/>
+        <input type="submit" value="작성"/>
+    </form>
+</body>
+</html>
