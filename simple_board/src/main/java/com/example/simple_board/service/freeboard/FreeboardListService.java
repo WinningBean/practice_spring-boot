@@ -36,4 +36,12 @@ public class FreeboardListService {
         session.setAttribute("boardList", freeboardList);
         return "freeboard";
     }
+
+    public void delete(String stringFreeId) {
+        Long freeId = Long.parseLong(stringFreeId);
+        Freeboard freeboard = freeboardRepository.findByFreeId(freeId);
+
+        if (freeboard == null) return;
+        freeboardRepository.delete(freeboard);
+    }
 }

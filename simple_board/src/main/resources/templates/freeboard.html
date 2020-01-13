@@ -7,6 +7,9 @@
         function getPost(freedid){
             location.href = "/freeBoardInfo?freeId=" + freedid;
         }
+        function boardDelete(freeid){
+            location.href = "/delete?freeId=" + freeid;
+        }
     </script>
 </head>
 <body>
@@ -28,6 +31,7 @@
                     <td><a th:onclick="|javascript:getPost('${board.getFreeId()}')|" th:text="${board.getTitle()}" style="cursor: grab;"></a></td>
                     <td><span th:text="${board.getWriter()}"></span></td>
     <!--                <td tbody:text="${board.getWriteTime()}"></td>-->
+                    <td><a th:onclick="|javascript:boardDelete('${board.getFreeId()}')|" style="cursor: grab;">삭제</a></td>
                 </tr>
             </th:block>
         </th:block>

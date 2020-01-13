@@ -5,10 +5,9 @@ import com.example.simple_board.service.freeboard.FreeboardListService;
 import com.example.simple_board.service.freeboard.FreeboardWriteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -41,9 +40,18 @@ public class FreeboardController {
         return "redirect:/freeboard";
     }
 
-    @GetMapping("freeBoardInfo")
+    @GetMapping("/freeBoardInfo")
     public String getPost(@RequestParam(value = "freeId")String freeId){
         String page = freeboardInfoService.getFreeboardPost(freeId);
         return page;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/delete")
+    public Map<String, String> boardDelete(@RequestParam(value = "freeId")String freeId){
+        Map<String, String> map = new HashMap<>();
+        map.put("deleteId", freeId);
+        freeboardListService.delete(freeId);
+        return map;
     }
 }
