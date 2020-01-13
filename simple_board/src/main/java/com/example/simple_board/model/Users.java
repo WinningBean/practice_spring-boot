@@ -1,46 +1,17 @@
 package com.example.simple_board.model;
 
+import lombok.Data;
 import javax.persistence.*;
 
+@Data
 @Entity
 @Table(name = "users")
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String user_id;
-    private String user_pw;
-    private String user_nm;
+    private String userId;
+    private String userPw;
+    private String userNm;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
-    }
-
-    public String getUser_pw() {
-        return user_pw;
-    }
-
-    public void setUser_pw(String user_pw) {
-        this.user_pw = user_pw;
-    }
-
-    public String getUser_nm() {
-        return user_nm;
-    }
-
-    public void setUser_nm(String user_nm) {
-        this.user_nm = user_nm;
-    }
 }

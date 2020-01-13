@@ -11,14 +11,17 @@ public class JoinService {
     @Autowired
     private UsersRepository usersRepository;
 
+    @Autowired
+    private UserPasswordHashClass userPasswordHashClass;
+
     public String joinUser(String userId, String userPw, String userNm){
 
         if (userId.equals("") || userPw.equals("") || userNm.equals("")) return "join";
 
         Users users = new Users();
-        users.setUser_id(userId);
-        users.setUser_pw(userPw);
-        users.setUser_nm(userNm);
+        users.setUserId(userId);
+        users.setUserPw(userPasswordHashClass.getSHA256(userPw));
+        users.setUserNm(userNm);
 
         usersRepository.save(users);
         return "index";
