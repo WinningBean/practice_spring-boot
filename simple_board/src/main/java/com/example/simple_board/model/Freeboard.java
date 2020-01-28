@@ -1,13 +1,16 @@
 package com.example.simple_board.model;
 
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
 @Table(name = "freeboard")
-public class Freeboard {
+public class Freeboard{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "freeId")
@@ -22,6 +25,9 @@ public class Freeboard {
     @Column(name = "content")
     private String content;
 
-//    @Column(name = "writeTime")
-//    private LocalTime writeTime;
+    @CreatedDate
+    private LocalDateTime createdDate;
+
+    @LastModifiedDate
+    private LocalDateTime modifiedDate;
 }
