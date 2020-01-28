@@ -54,4 +54,19 @@ public class FreeboardController {
         freeboardListService.delete(freeId);
         return map;
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/update")
+    public Map<String, String> boardUpdate(@RequestParam Map<String, String> paramMap){
+        String freeId = paramMap.get("freeId");
+        String title = paramMap.get("title");
+        String content = paramMap.get("content");
+        String writer = paramMap.get("writer");
+
+        Map<String, String> map = new HashMap<>();
+        map.put("deleteId", freeId);
+        map.put("deleteUser", writer);
+        freeboardInfoService.update(freeId, title, content);
+        return map;
+    }
 }

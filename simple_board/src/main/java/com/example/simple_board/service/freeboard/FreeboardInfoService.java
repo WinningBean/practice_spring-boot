@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
 
 @Service
 public class FreeboardInfoService {
@@ -20,5 +21,18 @@ public class FreeboardInfoService {
 
         session.setAttribute("freeboard", freeboard);
         return "freeBoardInfo";
+    }
+
+    public void update(String stringFreeId, String title, String content) {
+        Long freeId = Long.parseLong(stringFreeId);
+        Freeboard freeboard = freeboardRepository.findByFreeId(freeId);
+
+        if (freeboard == null) return;
+
+        freeboard.setTitle(title);
+        freeboard.setContent(content);
+        LocalDateTime dateTime = LocalDateTime.now();
+        freeboard.setModifiedDate(dateTime);
+        freeboardRepository.save(freeboard);
     }
 }

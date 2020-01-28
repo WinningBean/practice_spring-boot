@@ -4,14 +4,20 @@
     <meta charset="UTF-8">
     <title>게시글 자세히</title>
     <script>
-        function getPost(freedid){
-            location.href = "/freeBoardInfo?freeId=" + freedid;
+        function boardUpdate(freeid){
+            location.href = "/update?freeId=" + freeid;
         }
     </script>
 </head>
 <body>
-    <input th:value="${session.freeboard.getTitle()}"/><br>
-    <textarea th:text="${session.freeboard.getContent()}"></textarea><br>
-    <span th:text="${session.freeboard.getWriter()}"></span>
+<form> <!-- action="|javascript:boardUpdate('${session.freeboard.getFreeId()}')|">-->
+        <input type="hidden" name="freeId" th:value="${session.freeboard.getFreeId()}"/>
+        <input type="text" name="title" th:value="${session.freeboard.getTitle()}"/><br>
+        <textarea name="content" th:text="${session.freeboard.getContent()}"></textarea><br>
+        <span th:text="${session.freeboard.getWriter()}"></span><br>
+        <span th:text="${session.freeboard.getCreatedDate()}"></span><br>
+        <!--<span th:text="${session.freeboard.getUpdatedDate()}"></span><br>-->
+        <input type="submit" value="수정">
+    </form>
 </body>
 </html>

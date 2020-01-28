@@ -11,5 +11,9 @@
     <a href="/loginPage" th:if="${session.loginUser==null}">로그인</a><br>
     <a href="/logout" th:if="${session.loginUser!=null}">로그아웃</a><br>
     <a href="/freeboard">게시판</a>
+    <form action="/image/upload">
+        <input type="file" name="file" placeholder="파일"/>
+        <input type="submit" value="업로드"/>
+    </form>
 </body>
 </html>
